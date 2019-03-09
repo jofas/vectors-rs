@@ -1,0 +1,8 @@
+[package]
+name = "vectors"
+version = "0.1.0"
+authors = ["jofas <jonas@fc-web.de>"]
+edition = "2018"
+
+[dependencies]
+serde = {version="1.0",features=["derive"]}
