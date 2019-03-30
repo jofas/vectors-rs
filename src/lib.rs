@@ -155,7 +155,7 @@ impl Mul<Vector3> for Vector3 {
   fn mul(self, other: Vector3) -> Self {&self * &other}
 }
 
-impl Mul<f32> for Vector3 {
+impl Mul<f32> for &Vector3 {
   type Output = Vector3;
 
   fn mul(self, scalar: f32) -> Vector3 {
@@ -165,6 +165,12 @@ impl Mul<f32> for Vector3 {
   }
 }
 
+impl Mul<f32> for Vector3 {
+  type Output = Vector3;
+
+  fn mul(self, scalar: f32) -> Vector3 { &self * scalar }
+}
+
 impl From<[f32;3]> for Vector3 {
   fn from(slice: [f32;3]) -> Vector3 {
     Vector3::new(slice[0], slice[1], slice[2])
@@ -172,12 +178,41 @@ impl From<[f32;3]> for Vector3 {
 }
 
 impl Vector3 {
+  pub fn zero() -> Vector3 {
+    Vector3 { x: 0., y: 0., z: 0. }
+  }
+
   pub fn new(x: f32, y: f32, z: f32) -> Vector3 {
     Vector3 { x: x, y: y, z: z }
   }
 
+  pub fn from_polar(r: f32, theta: f32, phi: f32)
+    -> Vector3
+  {
+    Vector3 { x: r * theta.sin() * phi.cos()
+            , y: r * theta.sin() * phi.sin()
+            , z: r * theta.cos() }
+  }
+
   pub fn to_slice(&self) -> [f32;3] {
     [self.x, self.y, self.z]
+  }
+
+  pub fn normalize(&self) -> Vector3 {
+    self * (1. / self.magnitude())
+  }
+
+  pub fn theta(&self) -> f32 {
+    ( self.z / self.magnitude() ).acos()
+  }
+
+  pub fn phi(&self) -> f32 {
+    self.y.atan2(self.x)
+  }
+
+  pub fn magnitude(&self) -> f32 {
+    (self.x.powi(2) + self.y.powi(2) + self.z.powi(2))
+      .sqrt()
   }
 }
 // }}}
