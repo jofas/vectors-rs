@@ -4,6 +4,9 @@ use serde::{Serialize, Deserialize};
 
 use std::ops::{Add, Sub, Mul};
 use std::convert::{From};
+use std::f32::consts::PI;
+
+pub fn deg_to_rad(deg: f32) -> f32 { ( deg * PI ) / 180. }
 
 // Vector2 {{{
 #[derive(Debug, Serialize, Deserialize, Clone, Copy)]
