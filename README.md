@@ -7,3 +7,5 @@
 - impl rotation with quaternion
 
 - to_slice() -> as_slice()
+
+- (smallest angle between to vectors)
