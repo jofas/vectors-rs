@@ -89,7 +89,11 @@ impl From<[f32;2]> for Vector2 {
 
 impl Vector2 {
   pub fn new(x: f32, y: f32) -> Vector2 {
-    Vector2{ x: x, y: y }
+    Vector2 { x: x, y: y }
+  }
+  
+  pub fn zero() -> Vector2 {
+    Vector2::new(0., 0.) 
   }
 }
 // }}}
