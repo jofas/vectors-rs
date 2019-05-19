@@ -217,6 +217,10 @@ impl Vector3 {
     (self.x.powi(2) + self.y.powi(2) + self.z.powi(2))
       .sqrt()
   }
+  
+  pub fn xy(&self) -> Vector2 {
+    Vector2::new(self.x, self.y) 
+  }
 }
 // }}}
 
