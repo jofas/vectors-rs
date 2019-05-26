@@ -225,6 +225,13 @@ impl Vector3 {
   pub fn xy(&self) -> Vector2 {
     Vector2::new(self.x, self.y) 
   }
+  
+  pub fn cross(&self, other: &Vector3) -> Vector3 {
+    let x = self.y * other.z - self.z * other.y;
+    let y = self.z * other.x - self.x * other.z;
+    let z = self.x * other.y - self.y * other.x;
+    Vector3::new(x, y, z)
+  }
 }
 // }}}
 
